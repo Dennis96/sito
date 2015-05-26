@@ -12,10 +12,7 @@ include_once ("functionsql.php");
 			 $str1[] = array(
 	            'data' => $row['data'],
 	            'value' =>$row['temp'],);		}
-	//header("Content-Type: application/json", true);            
-	//header("Content-type: application/json");
-    
-    //var_dump($str1);
+	
 	echo json_encode($str1);
     
 

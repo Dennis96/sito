@@ -22,22 +22,31 @@
     
 		$(document).ready(function() {
 		// Create a Bar Chart with Morris
-		    		    
+		   
             
-            //var str = '{"val1": 1, "val2": 2, "val3": 3}';
-            //var obj = jQuery.parseJSON( str );
-            //console.log(obj);
-            
-			var chart= Morris.Line({
+			var chart1= Morris.Line({
 						    // ID of the element in which to draw the chart.
-						    element: 'stats-container',
+						    element: 'charttemp',
 						    // Set initial data (ideally you would provide an array of default data)
-						    data: [{data:"", value: 0}],
+						    data: [{data:"2015-05-23", value: 20}],
+						    		
+						    xkey: ['data'],
+						    ykeys: ['value'],
+						    labels: ['Temp'],
+                xLabelMargin: 10,
+                resize: true
+					  	});
+            var chart2= Morris.Line({
+						    // ID of the element in which to draw the chart.
+						    element: 'charthum',
+						    // Set initial data (ideally you would provide an array of default data)
+						    data: [{data:"2008", value: 0}],
 						    		
 						    xkey: 'data',
 						    ykeys: ['value'],
-						    labels: ['Temp'],
-                            resize: true
+						    labels: ['Hum'],
+                xLabelMargin: 10,
+                resize: true
 					  	});
 		  	//var jsonData;
 		  	
@@ -45,7 +54,7 @@
             
 			$.ajax({
 				//type: "POST",
-				url:'dati_grafico.php',
+				url:'dati_grafico_temp.php',
 				type: 'post',
 			    //dataType: 'json',
 			    
@@ -55,19 +64,52 @@
 		    	success:function(data) {
 	                // When the response to the AJAX request comes back render the chart with new data
                     var string = data;
-                    console.log(data);
+                    //console.log(string);
                     var oggetto = jQuery.parseJSON( string );
-	                console.log(oggetto);
-	                /*console.log(data);
-	                var jsonData=data;
-	                var a = data;*/
-	                chart.setData(oggetto);
+                    //console.log(oggetto);
+	                chart1.setData(oggetto);
 	                },	      		
 			    error: function( error )
 			      {
 			         alert( error );			
 			      }                
-			 });		
+			 });
+            $.ajax({
+				//type: "POST",
+				url:'dati_grafico_hum.php',
+				type: 'post',
+			    //dataType: 'json',
+			    //data: data,
+				
+                
+		    	success:function(data) {
+	                // When the response to the AJAX request comes back render the chart with new data
+                    var string = data;
+                    var oggetto = jQuery.parseJSON( string );
+	                  chart2.setData(oggetto);
+	                },	      		
+			    error: function( error )
+			      {
+			         alert( error );			
+			      }                
+			 });
+
+        $.ajax({
+                    url: 'datitabella.php',
+                    type: 'post',
+                    success:function(data)
+                    {
+                        var string = data;
+                        var oggetto = jQuery.parseJSON( string );
+                        //console.log(oggetto);
+                        for(i=0;i<oggetto.length;i++){
+                        $("#myTable tbody").append("<tr><td>"+oggetto[i]["data"]+"</td>+<td>"+oggetto[i]["hum"]+"%</td><td>"+oggetto[i]["temp"]+"°</td></tr>");}
+                    },
+                    error:function( error )
+                    {
+                       alert( error );      
+                    }   
+                });	
 		  
 		 });
 		  	
@@ -190,10 +232,23 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Grafico Temperatura</h3>
                             </div>
                             <div class="panel-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div id="stats-container" style="position: relative;"></div>
+                                <div id="charttemp" style="position: relative;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+			 <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Grafico Umidità</h3>
+                            </div>
+                            <div class="panel-body col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div id="charthum" style="position: relative;"></div>
                             </div>
                         </div>
                     </div>
@@ -205,65 +260,25 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h2>Storico</h2>
                         <div class="table-responsive">
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" id="myTable">
                                 <thead>
                                     <tr>
-                                        <th>Page</th>
-                                        <th>Visits</th>
-                                        <th>% New Visits</th>
-                                        <th>Revenue</th>
+                                        <th>Data</th>
+                                        <th>Umidità</th>
+                                        <th>Temperatura</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>/index.html</td>
-                                        <td>1265</td>
-                                        <td>32.3%</td>
-                                        <td>$321.33</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/about.html</td>
-                                        <td>261</td>
-                                        <td>33.3%</td>
-                                        <td>$234.12</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/sales.html</td>
-                                        <td>665</td>
-                                        <td>21.3%</td>
-                                        <td>$16.34</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog.html</td>
-                                        <td>9516</td>
-                                        <td>89.3%</td>
-                                        <td>$1644.43</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/404.html</td>
-                                        <td>23</td>
-                                        <td>34.3%</td>
-                                        <td>$23.52</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/services.html</td>
-                                        <td>421</td>
-                                        <td>60.3%</td>
-                                        <td>$724.32</td>
-                                    </tr>
-                                    <tr>
-                                        <td>/blog/post.html</td>
-                                        <td>1233</td>
-                                        <td>93.2%</td>
-                                        <td>$126.34</td>
-                                    </tr>
+
                                 </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
                 <!-- /.row -->
-
+            
+              
+              
           </section>
       </section>
       <!--main content end-->
