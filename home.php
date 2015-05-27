@@ -48,9 +48,8 @@
                 xLabelMargin: 10,
                 resize: true
 					  	});
-		  	//var jsonData;
-		  	
-            //$.("#postodati").load("dati_grafico.php",function(data){})
+
+          setInterval(function(){  
             
 			$.ajax({
 				//type: "POST",
@@ -102,6 +101,7 @@
                         var string = data;
                         var oggetto = jQuery.parseJSON( string );
                         //console.log(oggetto);
+                        $("#myTable tbody tr").remove();
                         for(i=0;i<oggetto.length;i++){
                         $("#myTable tbody").append("<tr><td>"+oggetto[i]["data"]+"</td>+<td>"+oggetto[i]["hum"]+"%</td><td>"+oggetto[i]["temp"]+"°</td></tr>");}
                     },
@@ -110,7 +110,7 @@
                        alert( error );      
                     }   
                 });	
-		  
+		      }, 10000);
 		 });
 		  	
   	</script>
