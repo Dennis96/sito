@@ -22,8 +22,7 @@
     
 		$(document).ready(function() {
 		// Create a Bar Chart with Morris
-		   
-            
+           
 			var chart1= Morris.Line({
 						    // ID of the element in which to draw the chart.
 						    element: 'charttemp',
@@ -49,7 +48,7 @@
                 resize: true
 					  	});
 
-          setInterval(function(){  
+          setInterval(function(){   
             
 			$.ajax({
 				//type: "POST",
@@ -110,7 +109,37 @@
                        alert( error );      
                     }   
                 });	
-		      }, 10000);
+
+                $.ajax({
+                    url: 'Tempnow.php',
+                    type: 'post',
+                    success:function(data)
+                    {
+                        var string = data;
+                        var oggetto = jQuery.parseJSON( string );
+                        $("#temp_a").text(oggetto[0]["value"]+"°");
+                    },
+                    error:function( error )
+                    {
+                       alert( error );      
+                    }   
+                }); 
+
+                  $.ajax({
+                    url: 'Humnow.php',
+                    type: 'post',
+                    success:function(data)
+                    {
+                      var string = data;
+                      var oggetto = jQuery.parseJSON( string );
+                      $("#hum_a").text(oggetto[0]["value"]+"%");
+                    },
+                    error:function( error )
+                    {
+                       alert( error );      
+                    }   
+                }); 
+		      }, 1000);
 		 });
 		  	
   	</script>
@@ -192,35 +221,19 @@
 			</div>
 			
             <div class="row">
-				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+					<div class="info-box red-bg">
+						<div class="title"><img src="img\temp.png">Temperatura attuale</div>  
+              <div class="count" id="temp_a"></div>
+            											
+					</div><!--/.info-box-->			
+				</div><!--/.col-->
+				
+				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
 					<div class="info-box blue-bg">
-						<i class="fa fa-cloud-download"></i>
-						<div class="count">6.674</div>
-						<div class="title">Download</div>						
-					</div><!--/.info-box-->			
-				</div><!--/.col-->
-				
-				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-					<div class="info-box brown-bg">
-						<i class="fa fa-shopping-cart"></i>
-						<div class="count">7.538</div>
-						<div class="title">Purchased</div>						
-					</div><!--/.info-box-->			
-				</div><!--/.col-->	
-				
-				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-					<div class="info-box dark-bg">
-						<i class="fa fa-thumbs-o-up"></i>
-						<div class="count">4.362</div>
-						<div class="title">Order</div>						
-					</div><!--/.info-box-->			
-				</div><!--/.col-->
-				
-				<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-					<div class="info-box green-bg">
-						<i class="fa fa-cubes"></i>
-						<div class="count">1.426</div>
-						<div class="title">Stock</div>						
+            <div class="title"><img src="img\hum.png">Umidità attuale</div>  
+            <div class="count" id="hum_a"></div>
+									
 					</div><!--/.info-box-->			
 				</div><!--/.col-->
 				
@@ -276,17 +289,11 @@
                     </div>
                 </div>
                 <!-- /.row -->
-            
-              
-              
           </section>
       </section>
       <!--main content end-->
   </section>
   <!-- container section start -->
   
-  
-
-
   </body>
 </html>
