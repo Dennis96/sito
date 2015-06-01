@@ -16,6 +16,25 @@
     <script src="js/raphael.min.js"></script>
     <script src="js/morris.js"></script>
     <script src="js/morris-data.js"></script>
+    <!-- Bootstrap CSS -->    
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- bootstrap theme -->
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <!--external css-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <!-- font icon -->
+    <link href="css/font-awesome.css" rel="stylesheet" />    
+    <!-- easy pie chart-->
+    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
+    <link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+      <!-- Custom styles -->
+    <link href="css/widgets.css" rel="stylesheet">
+      <link href="css/style.css" rel="stylesheet">
+      <link href="css/style-responsive.css" rel="stylesheet" />
+    <link href="css/xcharts.min.css" rel=" stylesheet"> 
+    <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
     
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script type="text/javascript">
@@ -143,85 +162,70 @@
 		 });
 		  	
   	</script>
-	    
-
-    <!-- Bootstrap CSS -->    
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <!-- bootstrap theme -->
-    <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <!--external css-->
-    <!-- font icon -->
-    <link href="css/font-awesome.css" rel="stylesheet" />    
-    <!-- easy pie chart-->
-    <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen"/>
-    <!-- owl carousel -->
-    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-	<link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
-    <!-- Custom styles -->
-	<link href="css/widgets.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link href="css/style-responsive.css" rel="stylesheet" />
-	<link href="css/xcharts.min.css" rel=" stylesheet">	
-	<link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
   </head>
 
   <body>
-  
-  
-  
-  
-  
-              <input type="hidden" id="postodati" value=""/>  
-  
-  
-  
-  <!-- container section start -->
-  <section id="container" class="">
-     
-      
-      <header class="header dark-bg">
-            <!--logo start-->
-            <a href="index.html" class="logo" style="text-align:center;">Progetto</a>
-            <!--logo end-->
-		</header>      
-      <!--header end-->
+  <div id="wrapper">
 
-      <!--sidebar start-->
-      <aside>
-          <div id="sidebar"  class="nav-collapse ">
-              <!-- sidebar menu start-->
-              <ul class="sidebar-menu">                
-                  <li class="active">
-                      <a class="" href="index.html">
-                          <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
-                      </a>
-                  </li>
-                  <li class="active">
-                      <a class="" href="login.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Logout</span>
-                      </a>
-                  </li>
-
-              </ul>
-              <!-- sidebar menu end-->
+    <div class="row">
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">SB Admin</a>
+            </div>
+            
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="active">
+                        <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="login.php"><i class="fa fa-fw fa-bar-chart-o"></i> Logout</a>
+                    </li>
+                    <li>
+                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> Tables</a>
+                    </li>
+                    <li>
+                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> Forms</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
+                    </li>
+                    <li>
+                        <a href="bootstrap-grid.html"><i class="fa fa-fw fa-wrench"></i> Bootstrap Grid</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Dropdown <i class="fa fa-fw fa-caret-down"></i></a>
+                        <ul id="demo" class="collapse">
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                            <li>
+                                <a href="#">Dropdown Item</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Blank Page</a>
+                    </li>
+                    <li>
+                        <a href="index-rtl.html"><i class="fa fa-fw fa-dashboard"></i> RTL Dashboard</a>
+                    </li>
+                </ul>
+            </div>
           </div>
-      </aside>
-      <!--sidebar end-->
-      
-      <!--main content start-->
-      <section id="main-content">
-          <section class="wrapper">            
-              <!--overview start-->
-			  <div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-				</div>
-			</div>
+            <!-- /.navbar-collapse -->
+        </nav>
 			
-            <div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="row" style="margin-top:60px;">
+				<div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-md-5 col-sm-12 col-xs-12">
 					<div class="info-box red-bg">
 						<div class="title"><img src="img\temp.png">Temperatura attuale</div>  
               <div class="count" id="temp_a"></div>
@@ -229,7 +233,7 @@
 					</div><!--/.info-box-->			
 				</div><!--/.col-->
 				
-				<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+				<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 					<div class="info-box blue-bg">
             <div class="title"><img src="img\hum.png">Umidità attuale</div>  
             <div class="count" id="hum_a"></div>
@@ -242,7 +246,7 @@
 <!-- Today status end -->
 			
 			 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                         <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Grafico Temperatura</h3>
@@ -255,7 +259,7 @@
                 </div>
               
 			 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                         <div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="panel-heading">
                                 <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Grafico Umidità</h3>
@@ -270,7 +274,7 @@
               
 				
 			 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-offset-1 col-md-offset-1 col-lg-10 col-md-10 col-sm-12 col-xs-12">
                         <h2>Storico</h2>
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover" id="myTable">
@@ -289,10 +293,7 @@
                     </div>
                 </div>
                 <!-- /.row -->
-          </section>
-      </section>
-      <!--main content end-->
-  </section>
+         </div>
   <!-- container section start -->
   
   </body>
