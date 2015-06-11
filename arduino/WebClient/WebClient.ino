@@ -1,55 +1,53 @@
-#include <Dhcp.h>
-#include <Dns.h>
 #include <Ethernet.h>
-#include <EthernetClient.h>
-#include <EthernetServer.h>
-#include <EthernetUdp.h>
 #include <SPI.h>
 
-// MAC address
-byte mac[] = { 0x90, 0xA2, 0xDA, 0x00, 0x62, 0xF8 };
-// client Ethernet
-EthernetClient ethclient; 
-// eventuale indirizzo IP statico da utilizzare
-IPAddress ip(192, 168, 1, 50);
+// the media access control (ethernet hardware) address for the shield:
+byte mac[] = { 0x90, 0xA2, 0xDA, 0x0F, 0x19, 0x2F };
+//the IP address for the shield:
+byte ip[] = { 192, 168, 10, 172 };                 // this is the assigned ip within the LAN
+// the router's gateway address:
+byte gateway[] = { 192, 168, 0, 11 };     // neccessary to get access to the internet 
+//via your router
+// the subnet:
+//byte subnet[] = { XX, XX, XX, XX };
+//the proxy server
+char server[] = "http://tesinaesame96.altervista.org/arduino/add.php";                 
+
+EthernetClient client;
  
 void setup()
 {
-    Serial.begin(9600);
-    // se la connessione attraverso DHCP fallisce
-    if (Ethernet.begin(mac) == 0)
-    {
-        Serial.println("!eseguo inizializzazione con indirizzo IP statico");       
-        Ethernet.begin(mac, ip);
-    }
-     else
-    {
-        Serial.println("eseguo inizializzazione con indirizzo IP dinamico");       
-    }  
+  Ethernet.begin(mac);
+  Serial.begin(9600);
+}
   
    
-}
+
 void loop()
 {
-   if (ethclient.connect("http://tesinaesame96.altervista.org/arduino/add.php", 80))
-    {
-        Serial.println("Connessione avvenuta!");
-        //Serial.println("Scrivi!");
-        //delay(5000);
-        //while(Serial.available()>0){
-          ethclient.println("POST / HTTP/1.1");
-          ethclient.println("Host: http://tesinaesame96.altervista.org/arduino/add.php");
-          ethclient.println();
-          //char tmp=Serial.read();
-          //Serial.println(tmp);
-          ethclient.print("scritta=OKOKOK");
-          Serial.println("OK!");
-      //}
-    }
-  if(ethclient.connected())
+  String Data="ciao billi";
+  if (client.connect(server, 80))
+  { 
+    Serial.println("Connessione al Server");
+    Serial.println();
+        
+    client.println("GET http://tesinaesame96.altervista.org/arduino/add.php");
+    client.print("Content-Length: ");
+    client.print(Data.length());
+    client.println();
+    client.print("arduino=");
+    client.print(Data);
+    Serial.println("Richiesta Post inviata con successo");
+    client.stop();
+    //Serial.flush();
+  }
+  else
   {
-    ethclient.stop();
+    Serial.println("Connessione al server fallita.");   
+    Serial.println();
+    //Serial.flush();
   }
   
-  delay(10000);
+delay(100000);
+
 }
